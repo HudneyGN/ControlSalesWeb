@@ -11,15 +11,15 @@ namespace SalesWebMvc.Controllers
 {
     public class DepartmentsController : Controller
     {
-        private readonly SalesWebMvcContext _context;
+        public readonly SalesWebMvcContext _context;
 
-        public DepartmentsController(SalesWebMvcContext context)
+        public DepartmentsController(SalesWebMvcContext context) // alterado o parametro de acesso para public 
         {
             _context = context;
         }
 
         // GET: Departments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index() 
         {
             return View(await _context.Department.ToListAsync());
         }
