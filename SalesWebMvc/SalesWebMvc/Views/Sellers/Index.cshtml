@@ -1,10 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model IEnumerable<SalesWebMvc.Models.Seller>
+
+@{
+    ViewData["Title"] = "Vendedores";
 }
 
-<h2>Vendedores</h2>
+<h2>@ViewData["Title"]</h2>
 
-<p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. <br />
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, <br />
-    when an unknown printer took a galley of type and scrambled it to make a type specimen book. <br />
-    It has survived not only five centuries,</p>
+<table class="table table-striped table-hover"
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name) <!--expressão lambida-->
+            </th>   
+            <th>
+                @Html.DisplayNameFor(model => model.Email) <!--expressão lambida-->
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate) <!--expressão lambida-->
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Basesalary) <!--expressão lambida-->
+            </th>
+            <th></th>
+        </tr>
+    </thead> 
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Basesalary)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-all-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" asp-all-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" asp-all-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
