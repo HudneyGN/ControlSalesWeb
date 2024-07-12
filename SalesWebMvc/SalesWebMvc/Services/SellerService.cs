@@ -9,11 +9,7 @@ namespace SalesWebMvc.Services
     public class SellerService
     {
         private readonly SalesWebMvcContext _context;
-        
-       /* public SellerService()
-        {
-        }*/
-
+       
         public SellerService(SalesWebMvcContext context)
         {
             _context = context;
@@ -22,6 +18,12 @@ namespace SalesWebMvc.Services
         public List<Seller> FindAll()
         {
             return _context.Seller.ToList(); //operação sincrona (simples)
+        }
+      
+        public void Insert(Seller obj)
+        {
+            _context.Add(obj);
+            _context.SaveChanges();
         }
     }
 }

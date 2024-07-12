@@ -40,3 +40,4 @@ F:\Udemy\C# Nélio Alves\18-Proj Sistema Web Com Asp.Net Core MVC e Entity e Fra
 F:\Udemy\C# Nélio Alves\18-Proj Sistema Web Com Asp.Net Core MVC e Entity e FrameWork\MVC\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Departments\Index.cshtml.g.cs
 F:\Udemy\C# Nélio Alves\18-Proj Sistema Web Com Asp.Net Core MVC e Entity e FrameWork\MVC\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\SalesWebMvc.csproj.CopyComplete
 F:\Udemy\C# Nélio Alves\18-Proj Sistema Web Com Asp.Net Core MVC e Entity e FrameWork\MVC\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Index.cshtml.g.cs
+F:\Udemy\C# Nélio Alves\18-Proj Sistema Web Com Asp.Net Core MVC e Entity e FrameWork\MVC\SalesWebMvc\SalesWebMvc\obj\Debug\netcoreapp2.1\Razor\Views\Sellers\Create.cshtml.g.cs
