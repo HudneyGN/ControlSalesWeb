@@ -14,7 +14,7 @@ namespace SalesWebMvc.Models
         public DateTime BirthDate { get; set; }
         public double Basesalary { get; set; }
         public Department Department { get; set; }
-        public int DepartmentId { get; set; }
+        public int DepartmentId { get; set; } // FK
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         #region métodos construtores
