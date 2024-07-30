@@ -1,11 +1,9 @@
 ﻿@model SalesWebMvc.Models.Seller
 @{
-    ViewData["Title"] = "Excluir Vendedor";
+    ViewData["Title"] = "Details";
 }
 
 <h2>@ViewData["Title"]</h2>
-
-<h3><strong>ATENÇÃO!</strong> Esta ação irá apagar o registro do vendedor.</h3>
 
 <div>
     <h4>Vendedor</h4>
@@ -39,11 +37,16 @@
             @Html.DisplayFor(model => model.Basesalary)
 
         </dd>
-    </dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department.Name)
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Apagar" class="btn-danger" />
-        <a asp-action="Index">Voltar para a lista.</a>
-    </form>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-default">Editar</a>
+    <a asp-action="Index">Voltar para a lista</a>
 </div>
