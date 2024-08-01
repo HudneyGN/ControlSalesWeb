@@ -5,6 +5,7 @@ using SalesWebMvc.Services;
 using SalesWebMvc.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -48,13 +49,15 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não fornecido" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não encontrado" });
             }
 
             return View(obj);
@@ -72,13 +75,15 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não Fornecido" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não encontrado" });
             }
 
             return View(obj);
@@ -88,13 +93,15 @@ namespace SalesWebMvc.Controllers
         {
             if(id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não encontrado" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não encontrado" });
             }
 
             List<Department> departments = _departmentService.FindAll();
@@ -108,21 +115,29 @@ namespace SalesWebMvc.Controllers
         {
             if(id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error),
+                    new { message = "Código vendedor não Correspodem" });
             }
             try
             {
                 _sellerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
-            {
-                return NotFound();
+            catch (ApplicationException e)
+            { 
+                return RedirectToAction(nameof(Error),
+                    new { message = e.Message });
             }
-            catch (DbConcurrencyException)
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewmodel = new ErrorViewModel
             {
-                return NotFound();
-            }
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewmodel);
         }
     }
 }
