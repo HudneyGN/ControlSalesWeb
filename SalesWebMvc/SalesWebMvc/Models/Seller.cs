@@ -10,22 +10,31 @@ namespace SalesWebMvc.Models
     public class Seller
     {
         public int Id { get; set; }
-        [Display(Name = "Nome")]
 
+        //Validação [required]
+        [Required(ErrorMessage = "{0} Obrigatório")] //Obrigatório informar o nome
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "{0} entre {2} à {1} caracteres")] //limitação de tamanho de string
+        [Display(Name = "Nome")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [EmailAddress(ErrorMessage = "Formato Inválido")]
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "{0} Obrigatório")]
         [Display(Name = "Data de Nascimento")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
+        [Required(ErrorMessage = "{0} Obrigatório")]
+        [Range(100.0, 50000.0, ErrorMessage = "{0} Entre {1} à {2}")]
         [Display(Name = "Salário Base")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double Basesalary { get; set; }
+
         public Department Department { get; set; }
         public int DepartmentId { get; set; } // FK
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
