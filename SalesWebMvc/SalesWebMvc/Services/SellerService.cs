@@ -12,7 +12,7 @@ namespace SalesWebMvc.Services
     public class SellerService
     {
         private readonly SalesWebMvcContext _context;
-       
+
         public SellerService(SalesWebMvcContext context)
         {
             _context = context;
@@ -20,9 +20,9 @@ namespace SalesWebMvc.Services
 
         public async Task<List<Seller>> FindAllAsync()
         {
-            return await _context.Seller.ToListAsync(); 
+            return await _context.Seller.ToListAsync();
         }
-      
+
         public async Task InsertAsync(Seller obj)
         {
             _context.Add(obj);
@@ -36,12 +36,20 @@ namespace SalesWebMvc.Services
 
         public async Task RemoveAsync(int id)
         {
-            var obj = await _context.Seller.FindAsync(id);
-            _context.Seller.Remove(obj);
-           await _context.SaveChangesAsync();
+
+            try
+            {
+                var obj = await _context.Seller.FindAsync(id);
+                _context.Seller.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateException e)
+            {
+                throw new IntegrityException("Digitar a mensagem de erro! ");
+            }
         }
 
-        public async Task UpdateAsync (Seller obj)
+        public async Task UpdateAsync(Seller obj)
         {
             bool hasAny = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
             if (!hasAny)
@@ -55,7 +63,7 @@ namespace SalesWebMvc.Services
             }
             catch (DbConcurrencyException e)
             {
-                throw new DbConcurrencyException(e.Message) ;
+                throw new DbConcurrencyException(e.Message);
             }
         }
     }
