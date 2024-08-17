@@ -11,7 +11,7 @@ namespace SalesWebMvc.Services
     {
         private readonly SalesWebMvcContext _context;
 
-        public SalesRecordService(SalesWebMvcContext context)
+        public SalesRecordService(SalesWebMvcContext context) 
         {
             _context = context;
         }
